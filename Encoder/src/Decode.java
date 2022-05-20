@@ -1,13 +1,12 @@
 public class Decode extends Cryptography{
     private String plainText;
     public Decode() {
-        this.plainText = null;
+        this.plainText = "";
     }
 
     public String decode(String encodedText) {
         char[] encodedTextToChar = encodedText.toUpperCase().toCharArray();
         int offsetIndex = super.findOffsetIndex(encodedTextToChar[0]);
-        String plainText = "";
         int index = 0;
         boolean isInside;
         for(int i = 1; i < encodedTextToChar.length; i++) {
