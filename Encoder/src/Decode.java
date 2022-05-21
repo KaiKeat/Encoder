@@ -7,23 +7,16 @@ public class Decode extends Cryptography{
     public String decode(String encodedText) {
         char[] encodedTextToChar = encodedText.toUpperCase().toCharArray();
         int offsetIndex = super.findOffsetIndex(encodedTextToChar[0]);
-        int index = 0;
-        boolean isInside;
+        int index;
         for(int i = 1; i < encodedTextToChar.length; i++) {
-            isInside = false;
+            index = -1;
             for (int j = 0; j < getReferenceTable().length; j++) {
                 if (encodedTextToChar[i] == getReferenceTable()[j]) {
-                    isInside = true;
-                    index = j + offsetIndex;
+                    index = (j + offsetIndex) % (getReferenceTable().length);
                 }
             }
-            if (isInside) {
-                if (index > getReferenceTable().length-1) {
-                    index -= (getReferenceTable().length);
-                    plainText+=getReferenceTable()[index];
-                } else {
-                    plainText+=getReferenceTable()[index];
-                }
+            if (index > -1) {
+                plainText+=getReferenceTable()[index];
             } else {
                 plainText+=encodedTextToChar[i];
             }
