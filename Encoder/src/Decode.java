@@ -13,6 +13,7 @@ public class Decode extends Cryptography{
             for (int j = 0; j < getReferenceTable().length; j++) {
                 if (encodedTextToChar[i] == getReferenceTable()[j]) {
                     index = (j + offsetIndex) % (getReferenceTable().length);
+                    break;
                 }
             }
             if (index > -1) {
