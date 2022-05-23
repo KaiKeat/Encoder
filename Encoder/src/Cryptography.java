@@ -5,18 +5,15 @@ public class Cryptography {
                     '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
                     '(', ')', '*', '+', ',', '-', '.', '/'};
 
-    public Cryptography() {
-
-    }
+    public Cryptography() {}
 
     public int findOffsetIndex(char offsetValue) {
-        int idx = 0;
         for (int i=0; i < referenceTable.length; i++) {
             if (offsetValue == referenceTable[i]) {
-                idx = i;
+                return i;
             }
         }
-        return idx;
+        return 0;
     }
 
     public char[] getReferenceTable() {
