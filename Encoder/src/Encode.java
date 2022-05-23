@@ -4,7 +4,7 @@ public class Encode extends Cryptography{
     private char[] offsetTable;
 
     public Encode() {
-        this.encodedText = null;
+        this.encodedText = "";
         this.offsetValue = 'A';
         this.offsetTable = null;
     }
@@ -32,18 +32,10 @@ public class Encode extends Cryptography{
 
     private void populateOffsetTable() {
         int idx = findOffsetIndex(offsetValue);
-        char[] offsetArray = new char[getReferenceTable().length];
-//        for(int i = 0; i < idx; i++) {
-//            offsetArray[i] = getReferenceTable()[(getReferenceTable().length - idx)+i];
-//        }
-//        for(int i = idx; i < getReferenceTable().length; i++) {
-//            offsetArray[i] = getReferenceTable()[i-idx];
-//        }
+        offsetTable = new char[getReferenceTable().length];
         for (int i = 0; i < getReferenceTable().length; i++) {
-            offsetArray[i] = getReferenceTable()[(i + (getReferenceTable().length - idx)) % getReferenceTable().length];
+            offsetTable[i] = getReferenceTable()[(i + (getReferenceTable().length - idx)) % getReferenceTable().length];
         }
-
-        offsetTable = offsetArray;
     }
 
     public String getEncodedText() {
